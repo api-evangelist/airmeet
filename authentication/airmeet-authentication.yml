@@ -1,0 +1,44 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/airmeet-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: accessKey
+  type: apiKey
+  in: header
+  parameter: X-Airmeet-Access-Key
+  description: Community access key, presented at POST /auth.
+  sources:
+  - openapi/airmeet-openapi.yml
+- name: secretKey
+  type: apiKey
+  in: header
+  parameter: X-Airmeet-Secret-Key
+  description: Community secret key, presented at POST /auth.
+  sources:
+  - openapi/airmeet-openapi.yml
+- name: accessToken
+  type: apiKey
+  in: header
+  parameter: X-Airmeet-Access-Token
+  description: Bearer access token issued by POST /auth, valid for 30 days.
+  sources:
+  - openapi/airmeet-openapi.yml
+- name: webhookAccessKey
+  type: apiKey
+  in: header
+  parameter: x-access-key
+  description: Access key for webhook registration.
+  sources:
+  - openapi/airmeet-openapi.yml
+- name: webhookSecretKey
+  type: apiKey
+  in: header
+  parameter: x-secret-key
+  description: Secret key for webhook registration.
+  sources:
+  - openapi/airmeet-openapi.yml
