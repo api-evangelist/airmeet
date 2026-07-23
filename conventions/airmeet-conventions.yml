@@ -1,0 +1,40 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  help.airmeet.com public API docs + openapi/airmeet-openapi.yml
+authentication:
+  style: api-key-to-token
+  detail: >-
+    Exchange X-Airmeet-Access-Key + X-Airmeet-Secret-Key at POST /auth for an
+    access token valid 30 days; send it as X-Airmeet-Access-Token on all other
+    requests. Webhook registration uses x-access-key / x-secret-key headers.
+  ref: authentication/airmeet-authentication.yml
+idempotency:
+  supported: false
+  note: No idempotency-key header or contract is documented.
+pagination:
+  style: page-number
+  params: [pageNumber, pageSize]
+  applies_to: [listAirmeets]
+async_jobs:
+  supported: true
+  note: >-
+    Bulk data reads (attendees, session attendees, booth attendance, UTMs,
+    event replay attendees) are asynchronous; the request returns a job/URL
+    reference to poll for the generated dataset.
+error_envelope:
+  shape: '{ "success": boolean, "message": string }'
+  ref: errors/airmeet-problem-types.yml
+  format: custom-envelope
+response_envelope:
+  shape: '{ "success": boolean, "data": object }'
+versioning:
+  ref: lifecycle/airmeet-lifecycle.yml
+  scheme: uri-path
+rate_limiting:
+  documented: false
+regions:
+  hosts:
+  - https://api-gateway.airmeet.com/prod
+  - https://api-gateway-prod.eu.airmeet.com/prod
+  - https://api-gateway-prod.us.airmeet.com/prod

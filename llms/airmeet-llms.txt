@@ -1,0 +1,38 @@
+# Airmeet
+
+> Airmeet is a virtual, hybrid and in-person events platform. Its Public API lets you create and manage events (Airmeets), sessions, speakers, booths and event series; manage registrations; read engagement and attendance data; and subscribe to 24+ webhook event triggers. Auth is a two-step flow: exchange an access key + secret key for a 30-day access token, then send it as X-Airmeet-Access-Token.
+
+## APIs
+
+- [Airmeet Public API (OpenAPI)](https://raw.githubusercontent.com/api-evangelist/airmeet/refs/heads/main/openapi/airmeet-openapi.yml): 29 operations across event details, registrations, event management, event series and webhook registration.
+- [Airmeet Webhooks (AsyncAPI)](https://raw.githubusercontent.com/api-evangelist/airmeet/refs/heads/main/asyncapi/airmeet-webhooks-asyncapi.yml): the 24+ webhook event triggers.
+
+## Docs
+
+- [Public API introduction](https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction)
+- [Event Details API](https://help.airmeet.com/support/solutions/articles/82000909768-1-event-details-airmeet-public-api)
+- [Manage Registrations API](https://help.airmeet.com/support/solutions/articles/82000909769-2-manage-registrations-airmeet-public-api)
+- [Manage Event API](https://help.airmeet.com/support/solutions/articles/82000909770-3-manage-event-airmeet-public-api)
+- [Manage Event Series API](https://help.airmeet.com/support/solutions/articles/82000912150-4-manage-event-series-airmeet-public-api)
+- [Airmeet Webhooks](https://help.airmeet.com/support/solutions/articles/82000878498-airmeet-webhooks)
+- [Knowledge base](https://help.airmeet.com/support/home)
+
+## Artifacts
+
+- [Authentication profile](https://raw.githubusercontent.com/api-evangelist/airmeet/refs/heads/main/authentication/airmeet-authentication.yml)
+- [Conventions](https://raw.githubusercontent.com/api-evangelist/airmeet/refs/heads/main/conventions/airmeet-conventions.yml)
+- [Error / problem types](https://raw.githubusercontent.com/api-evangelist/airmeet/refs/heads/main/errors/airmeet-problem-types.yml)
+- [Lifecycle](https://raw.githubusercontent.com/api-evangelist/airmeet/refs/heads/main/lifecycle/airmeet-lifecycle.yml)
+- [Data model](https://raw.githubusercontent.com/api-evangelist/airmeet/refs/heads/main/data-model/airmeet-data-model.yml)
+- [Agent skills](https://raw.githubusercontent.com/api-evangelist/airmeet/refs/heads/main/skills/_index.yml)
+
+## Company
+
+- [Website](https://www.airmeet.com/)
+- [Pricing](https://www.airmeet.com/hub/pricing/)
+- [Integrations](https://www.airmeet.com/hub/product-integrations/)
+- [Status](https://status.airmeet.com/)
+- [Product updates](https://updates.airmeet.com/en/)
+- [Security & compliance](https://www.airmeet.com/hub/security-and-compliance/)
+- [Responsible disclosure](https://www.airmeet.com/hub/responsible-disclosure/)
+- [Blog](https://www.airmeet.com/hub/blog/)

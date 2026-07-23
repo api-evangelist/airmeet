@@ -1,0 +1,27 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Airmeet Public API
+  version: 1.0.0
+extends: openapi/airmeet-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-17'
+    x-apievangelist-source: help.airmeet.com public API documentation
+    x-apievangelist-auth-model: api-key-to-token
+- target: $.info
+  update:
+    x-apievangelist-async-endpoints:
+    - getAttendees
+    - getSessionAttendees
+    - getBoothAttendance
+    - getUtms
+    - getEventReplayAttendees
+- target: $.paths['/airmeet/{airmeetId}/status'].post
+  update:
+    x-apievangelist-consequence: write
+    x-apievangelist-note: Controls event lifecycle (start/pause/finish/archive).
+- target: $.paths['/airmeet/{airmeetId}/session/{sessionId}'].delete
+  update:
+    x-apievangelist-consequence: write
+    x-apievangelist-note: Destructive operation; deletes a session.

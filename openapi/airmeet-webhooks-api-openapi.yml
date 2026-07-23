@@ -1,0 +1,138 @@
+openapi: 3.0.3
+info:
+  title: Airmeet Public Authentication Webhooks API
+  version: '1.0'
+  description: 'The Airmeet Public API lets you programmatically manage events (Airmeets), registrations, sessions, speakers, booths and event series on the Airmeet virtual, hybrid and in-person events platform, and read back event engagement and attendance data. Authentication is a two-step flow: exchange an access key and secret key at POST /auth for a bearer access token (valid 30 days), then send that token as the X-Airmeet-Access-Token header on every other request. Several read endpoints (attendees, booth attendance, UTMs, replay attendance) are asynchronous and return a job/URL to poll for the result. Responses share a { "success": boolean, "data": ... } envelope.'
+  contact:
+    name: Airmeet Support
+    email: support@airmeet.com
+    url: https://help.airmeet.com/support/solutions/82000362508
+  termsOfService: https://www.airmeet.com/hub/terms-of-use/
+servers:
+- url: https://api-gateway.airmeet.com/prod
+  description: Default region (Mumbai)
+- url: https://api-gateway-prod.eu.airmeet.com/prod
+  description: EU region
+- url: https://api-gateway-prod.us.airmeet.com/prod
+  description: US region
+security:
+- accessToken: []
+tags:
+- name: Webhooks
+  description: Register webhook subscriptions for Airmeet event triggers.
+paths:
+  /platform-integration/v1/webhook-register:
+    post:
+      operationId: registerWebhook
+      summary: Register a webhook subscription
+      description: Register a webhook endpoint to receive Airmeet event triggers. Uses the x-access-key and x-secret-key headers. Provide a triggerMetaInfoId for the event type to subscribe to; event-specific triggers accept an airmeetId query parameter.
+      tags:
+      - Webhooks
+      security:
+      - webhookAccessKey: []
+        webhookSecretKey: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - triggerMetaInfoId
+              - url
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                triggerMetaInfoId:
+                  type: string
+                  description: Identifier of the webhook trigger/event type.
+                url:
+                  type: string
+                  format: uri
+                  description: Destination URL to receive webhook POSTs.
+                platformName:
+                  type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid credentials/token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Success:
+      description: Successful response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Envelope'
+  schemas:
+    Envelope:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data: {}
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+        error:
+          type: string
+  securitySchemes:
+    accessKey:
+      type: apiKey
+      in: header
+      name: X-Airmeet-Access-Key
+      description: Community access key, presented at POST /auth.
+    secretKey:
+      type: apiKey
+      in: header
+      name: X-Airmeet-Secret-Key
+      description: Community secret key, presented at POST /auth.
+    accessToken:
+      type: apiKey
+      in: header
+      name: X-Airmeet-Access-Token
+      description: Bearer access token issued by POST /auth, valid for 30 days.
+    webhookAccessKey:
+      type: apiKey
+      in: header
+      name: x-access-key
+      description: Access key for webhook registration.
+    webhookSecretKey:
+      type: apiKey
+      in: header
+      name: x-secret-key
+      description: Secret key for webhook registration.
+externalDocs:
+  description: Airmeet Public API documentation
+  url: https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction

@@ -1,0 +1,24 @@
+{
+  "provider": "airmeet",
+  "sources": [
+    "airmeet-authentication-api-openapi.yml",
+    "airmeet-event-details-api-openapi.yml",
+    "airmeet-manage-event-api-openapi.yml",
+    "airmeet-manage-event-series-api-openapi.yml",
+    "airmeet-manage-registrations-api-openapi.yml",
+    "airmeet-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "airmeet-authentication-api-openapi.yml",
+    "airmeet-event-details-api-openapi.yml",
+    "airmeet-manage-event-api-openapi.yml",
+    "airmeet-manage-event-series-api-openapi.yml",
+    "airmeet-manage-registrations-api-openapi.yml",
+    "airmeet-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,369 @@
+openapi: 3.0.3
+info:
+  title: Airmeet Public Authentication Event Details API
+  version: '1.0'
+  description: 'The Airmeet Public API lets you programmatically manage events (Airmeets), registrations, sessions, speakers, booths and event series on the Airmeet virtual, hybrid and in-person events platform, and read back event engagement and attendance data. Authentication is a two-step flow: exchange an access key and secret key at POST /auth for a bearer access token (valid 30 days), then send that token as the X-Airmeet-Access-Token header on every other request. Several read endpoints (attendees, booth attendance, UTMs, replay attendance) are asynchronous and return a job/URL to poll for the result. Responses share a { "success": boolean, "data": ... } envelope.'
+  contact:
+    name: Airmeet Support
+    email: support@airmeet.com
+    url: https://help.airmeet.com/support/solutions/82000362508
+  termsOfService: https://www.airmeet.com/hub/terms-of-use/
+servers:
+- url: https://api-gateway.airmeet.com/prod
+  description: Default region (Mumbai)
+- url: https://api-gateway-prod.eu.airmeet.com/prod
+  description: EU region
+- url: https://api-gateway-prod.us.airmeet.com/prod
+  description: US region
+security:
+- accessToken: []
+tags:
+- name: Event Details
+  description: Read events, participants, sessions, engagement and attendance data.
+paths:
+  /airmeets:
+    get:
+      operationId: listAirmeets
+      summary: List accessible Airmeets
+      description: List all Airmeets (events) the credentials can access, with pagination.
+      tags:
+      - Event Details
+      parameters:
+      - name: pageNumber
+        in: query
+        schema:
+          type: integer
+        description: Page number for pagination.
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+        description: Number of records per page.
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/info:
+    get:
+      operationId: getAirmeetInfo
+      summary: Get event and session details
+      description: Fetch the sessions and metadata within an event.
+      tags:
+      - Event Details
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '412':
+          $ref: '#/components/responses/PreconditionFailed'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/participants:
+    get:
+      operationId: getParticipants
+      summary: Get event participants
+      description: Fetch the participants/registrants of an event.
+      tags:
+      - Event Details
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '412':
+          $ref: '#/components/responses/PreconditionFailed'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/custom-fields:
+    get:
+      operationId: getCustomFields
+      summary: Get custom registration fields
+      description: Fetch the custom registration fields configured for an event.
+      tags:
+      - Event Details
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/attendees:
+    get:
+      operationId: getAttendees
+      summary: Get event attendance data (async)
+      description: Fetch event attendance data. This is an asynchronous endpoint that returns a job reference to poll for the generated data.
+      tags:
+      - Event Details
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      responses:
+        '200':
+          $ref: '#/components/responses/AsyncAccepted'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '412':
+          $ref: '#/components/responses/PreconditionFailed'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /session/{sessionId}/attendees:
+    get:
+      operationId: getSessionAttendees
+      summary: Get session attendance (async)
+      description: Fetch session attendance data asynchronously.
+      tags:
+      - Event Details
+      parameters:
+      - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          $ref: '#/components/responses/AsyncAccepted'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/booths:
+    get:
+      operationId: listBooths
+      summary: List event booths
+      description: List all booths configured for an event.
+      tags:
+      - Event Details
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/booth/{boothId}/booth-attendance:
+    get:
+      operationId: getBoothAttendance
+      summary: Get booth attendance (async)
+      description: Fetch booth attendees asynchronously.
+      tags:
+      - Event Details
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      - name: boothId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Booth identifier.
+      responses:
+        '200':
+          $ref: '#/components/responses/AsyncAccepted'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/polls:
+    get:
+      operationId: getPolls
+      summary: Get poll responses
+      description: Fetch poll responses submitted during an event.
+      tags:
+      - Event Details
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/questions:
+    get:
+      operationId: getQuestions
+      summary: Get Q&A questions
+      description: Fetch questions asked during an event.
+      tags:
+      - Event Details
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/tracks:
+    get:
+      operationId: getTracks
+      summary: Get event tracks
+      description: Fetch the tracks configured for an event.
+      tags:
+      - Event Details
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/utms:
+    get:
+      operationId: getUtms
+      summary: Get registration UTM parameters (async)
+      description: Fetch registration UTM parameters asynchronously.
+      tags:
+      - Event Details
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      responses:
+        '200':
+          $ref: '#/components/responses/AsyncAccepted'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/session-recordings:
+    get:
+      operationId: getSessionRecordings
+      summary: Get session recording links
+      description: Fetch download links for session recordings.
+      tags:
+      - Event Details
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/event-replay-attendees:
+    get:
+      operationId: getEventReplayAttendees
+      summary: Get replay attendance (async)
+      description: Fetch on-demand/replay attendance data asynchronously.
+      tags:
+      - Event Details
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      responses:
+        '200':
+          $ref: '#/components/responses/AsyncAccepted'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    Unauthorized:
+      description: Missing or invalid credentials/token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    AsyncAccepted:
+      description: Asynchronous job accepted; poll the returned reference for data.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Envelope'
+    PreconditionFailed:
+      description: Precondition failed (e.g. data not yet available).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Success:
+      description: Successful response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Envelope'
+  schemas:
+    Envelope:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data: {}
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+        error:
+          type: string
+  parameters:
+    SessionId:
+      name: sessionId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Session identifier.
+    AirmeetId:
+      name: airmeetId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Airmeet (event) identifier.
+  securitySchemes:
+    accessKey:
+      type: apiKey
+      in: header
+      name: X-Airmeet-Access-Key
+      description: Community access key, presented at POST /auth.
+    secretKey:
+      type: apiKey
+      in: header
+      name: X-Airmeet-Secret-Key
+      description: Community secret key, presented at POST /auth.
+    accessToken:
+      type: apiKey
+      in: header
+      name: X-Airmeet-Access-Token
+      description: Bearer access token issued by POST /auth, valid for 30 days.
+    webhookAccessKey:
+      type: apiKey
+      in: header
+      name: x-access-key
+      description: Access key for webhook registration.
+    webhookSecretKey:
+      type: apiKey
+      in: header
+      name: x-secret-key
+      description: Secret key for webhook registration.
+externalDocs:
+  description: Airmeet Public API documentation
+  url: https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction

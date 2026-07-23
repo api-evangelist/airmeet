@@ -1,0 +1,24 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://status.airmeet.com/ + https://updates.airmeet.com/en/ +
+  help.airmeet.com public API docs
+versioning:
+  scheme: uri-path
+  current: v1
+  note: >-
+    The webhook platform-integration surface is versioned in the path
+    (/platform-integration/v1/). The core public API is served under the /prod
+    stage on regional api-gateway hosts.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal deprecation/sunset policy is published.
+status_page: https://status.airmeet.com/
+status_page_provider: Atlassian Statuspage
+changelog: https://updates.airmeet.com/en/
+regions:
+- Default (Mumbai)
+- EU (Ireland)
+- US
+deprecated_operations: []

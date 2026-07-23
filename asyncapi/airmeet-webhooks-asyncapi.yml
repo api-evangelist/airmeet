@@ -1,0 +1,134 @@
+asyncapi: 2.6.0
+info:
+  title: Airmeet Webhooks
+  version: '1.0'
+  description: >-
+    Airmeet delivers event engagement and lifecycle notifications via webhooks.
+    Subscribers register a destination URL against a trigger via
+    POST /platform-integration/v1/webhook-register (headers x-access-key /
+    x-secret-key). Event-specific triggers accept an airmeetId query parameter
+    on the registered endpoint; some support a sessionId parameter. Airmeet POSTs
+    a JSON payload to the registered URL when the trigger fires.
+  externalDocs:
+    description: Airmeet Webhooks documentation
+    url: https://help.airmeet.com/support/solutions/articles/82000878498-airmeet-webhooks
+defaultContentType: application/json
+channels:
+  trigger.airmeet.created:
+    subscribe:
+      operationId: onAirmeetCreated
+      summary: A new Airmeet was created.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.airmeet.started:
+    subscribe:
+      operationId: onAirmeetStarted
+      summary: An Airmeet started.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.airmeet.finished:
+    subscribe:
+      operationId: onAirmeetFinished
+      summary: An Airmeet finished.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.airmeet.reminder:
+    subscribe:
+      operationId: onAirmeetReminder
+      summary: Event start reminder.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.airmeet.attendee.added:
+    subscribe:
+      operationId: onAttendeeAdded
+      summary: A new registration was added.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.airmeet.registrant.added:
+    subscribe:
+      operationId: onRegistrantAdded
+      summary: Registration for a specific event.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.airmeet.attendee.joined:
+    subscribe:
+      operationId: onAttendeeJoinedEvent
+      summary: An attendee joined the event.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.session.attendee.joined:
+    subscribe:
+      operationId: onAttendeeJoinedSession
+      summary: An attendee joined a session.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.airmeet.polls:
+    subscribe:
+      operationId: onPollAnswered
+      summary: An attendee answered a poll.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.airmeet.questions:
+    subscribe:
+      operationId: onQuestionAsked
+      summary: An attendee asked a question.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.attendee.booth.joined:
+    subscribe:
+      operationId: onBoothVisited
+      summary: An attendee visited a booth.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.attendee.clicked_cta:
+    subscribe:
+      operationId: onCtaClicked
+      summary: An attendee clicked a CTA.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.attendee.entered_airmeet:
+    subscribe:
+      operationId: onEnteredEvent
+      summary: An attendee entered the event.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.attendee.engagement_score:
+    subscribe:
+      operationId: onEngagementScore
+      summary: Attendee engagement score data.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.leaderboard.scoreboard:
+    subscribe:
+      operationId: onLeaderboardScore
+      summary: Leaderboard score data.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.attendee.joined_stage:
+    subscribe:
+      operationId: onJoinedStage
+      summary: An attendee joined the stage.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.attendee.joined_booth:
+    subscribe:
+      operationId: onJoinedBooth
+      summary: An attendee joined a booth.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.attendee.joined_table:
+    subscribe:
+      operationId: onJoinedTable
+      summary: An attendee joined a table.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.attendee.joined_session:
+    subscribe:
+      operationId: onJoinedSession
+      summary: An attendee joined a session.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.attendee.opened_resource:
+    subscribe:
+      operationId: onResourceOpened
+      summary: An attendee viewed or downloaded a resource.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+  trigger.attendee.ondemand_session_attendance:
+    subscribe:
+      operationId: onReplayViewed
+      summary: An attendee viewed a session replay.
+      message: { $ref: '#/components/messages/WebhookEvent' }
+components:
+  messages:
+    WebhookEvent:
+      name: WebhookEvent
+      title: Airmeet webhook event
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          trigger: { type: string, description: The trigger/event name. }
+          airmeetId: { type: string }
+          sessionId: { type: string }
+          data: { type: object, description: Trigger-specific event data. }

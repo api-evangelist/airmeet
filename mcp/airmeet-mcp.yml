@@ -1,0 +1,99 @@
+generated: '2026-07-17'
+method: derived
+status: candidate
+source: openapi/airmeet-openapi.yml
+server:
+  name: airmeet
+  transport: http
+  url: null
+note: >-
+  No official Airmeet MCP server was found. This is a candidate tool list
+  derived one-to-one from the documented Public API operations.
+tools:
+- name: authenticate
+  description: Exchange access/secret keys for a 30-day access token.
+  source_operation: openapi/airmeet-openapi.yml#authenticate
+- name: list_airmeets
+  description: List accessible Airmeets with pagination.
+  source_operation: openapi/airmeet-openapi.yml#listAirmeets
+- name: get_airmeet_info
+  description: Get event and session details.
+  source_operation: openapi/airmeet-openapi.yml#getAirmeetInfo
+- name: get_participants
+  description: Get event participants/registrants.
+  source_operation: openapi/airmeet-openapi.yml#getParticipants
+- name: get_custom_fields
+  description: Get custom registration fields.
+  source_operation: openapi/airmeet-openapi.yml#getCustomFields
+- name: get_attendees
+  description: Get event attendance data (async).
+  source_operation: openapi/airmeet-openapi.yml#getAttendees
+- name: get_session_attendees
+  description: Get session attendance (async).
+  source_operation: openapi/airmeet-openapi.yml#getSessionAttendees
+- name: list_booths
+  description: List event booths.
+  source_operation: openapi/airmeet-openapi.yml#listBooths
+- name: get_booth_attendance
+  description: Get booth attendance (async).
+  source_operation: openapi/airmeet-openapi.yml#getBoothAttendance
+- name: get_polls
+  description: Get poll responses.
+  source_operation: openapi/airmeet-openapi.yml#getPolls
+- name: get_questions
+  description: Get Q&A questions.
+  source_operation: openapi/airmeet-openapi.yml#getQuestions
+- name: get_tracks
+  description: Get event tracks.
+  source_operation: openapi/airmeet-openapi.yml#getTracks
+- name: get_utms
+  description: Get registration UTM parameters (async).
+  source_operation: openapi/airmeet-openapi.yml#getUtms
+- name: get_session_recordings
+  description: Get session recording download links.
+  source_operation: openapi/airmeet-openapi.yml#getSessionRecordings
+- name: get_event_replay_attendees
+  description: Get replay attendance (async).
+  source_operation: openapi/airmeet-openapi.yml#getEventReplayAttendees
+- name: add_attendee
+  description: Add an authorized attendee.
+  source_operation: openapi/airmeet-openapi.yml#addAttendee
+- name: block_attendee
+  description: Block an attendee.
+  source_operation: openapi/airmeet-openapi.yml#blockAttendee
+- name: unblock_attendee
+  description: Unblock an attendee.
+  source_operation: openapi/airmeet-openapi.yml#unblockAttendee
+- name: create_airmeet
+  description: Create an event.
+  source_operation: openapi/airmeet-openapi.yml#createAirmeet
+- name: add_speaker
+  description: Add a speaker.
+  source_operation: openapi/airmeet-openapi.yml#addSpeaker
+- name: create_session
+  description: Create a session.
+  source_operation: openapi/airmeet-openapi.yml#createSession
+- name: delete_session
+  description: Delete a session.
+  source_operation: openapi/airmeet-openapi.yml#deleteSession
+- name: update_airmeet_status
+  description: Start, pause, finish or archive an event.
+  source_operation: openapi/airmeet-openapi.yml#updateAirmeetStatus
+- name: create_booth
+  description: Create a booth.
+  source_operation: openapi/airmeet-openapi.yml#createBooth
+- name: customize_landing_page
+  description: Customize the event landing page.
+  source_operation: openapi/airmeet-openapi.yml#customizeLandingPage
+- name: duplicate_airmeet
+  description: Duplicate an event.
+  source_operation: openapi/airmeet-openapi.yml#duplicateAirmeet
+- name: list_event_series
+  description: List event series.
+  source_operation: openapi/airmeet-openapi.yml#listEventSeries
+- name: list_event_series_events
+  description: List events within a series.
+  source_operation: openapi/airmeet-openapi.yml#listEventSeriesEvents
+- name: register_webhook
+  description: Register a webhook subscription for an event trigger.
+  source_operation: openapi/airmeet-openapi.yml#registerWebhook

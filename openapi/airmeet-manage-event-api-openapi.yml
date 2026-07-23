@@ -1,0 +1,442 @@
+openapi: 3.0.3
+info:
+  title: Airmeet Public Authentication Manage Event API
+  version: '1.0'
+  description: 'The Airmeet Public API lets you programmatically manage events (Airmeets), registrations, sessions, speakers, booths and event series on the Airmeet virtual, hybrid and in-person events platform, and read back event engagement and attendance data. Authentication is a two-step flow: exchange an access key and secret key at POST /auth for a bearer access token (valid 30 days), then send that token as the X-Airmeet-Access-Token header on every other request. Several read endpoints (attendees, booth attendance, UTMs, replay attendance) are asynchronous and return a job/URL to poll for the result. Responses share a { "success": boolean, "data": ... } envelope.'
+  contact:
+    name: Airmeet Support
+    email: support@airmeet.com
+    url: https://help.airmeet.com/support/solutions/82000362508
+  termsOfService: https://www.airmeet.com/hub/terms-of-use/
+servers:
+- url: https://api-gateway.airmeet.com/prod
+  description: Default region (Mumbai)
+- url: https://api-gateway-prod.eu.airmeet.com/prod
+  description: EU region
+- url: https://api-gateway-prod.us.airmeet.com/prod
+  description: US region
+security:
+- accessToken: []
+tags:
+- name: Manage Event
+  description: Create and manage events, speakers, sessions, booths and landing pages.
+paths:
+  /airmeet/{airmeetId}/booths:
+    post:
+      operationId: createBooth
+      summary: Create a booth
+      description: Add a booth to your Airmeet event.
+      tags:
+      - Manage Event
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BoothCreate'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet:
+    post:
+      operationId: createAirmeet
+      summary: Create an event
+      description: Create an Airmeet in your community.
+      tags:
+      - Manage Event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AirmeetCreate'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/speaker:
+    post:
+      operationId: addSpeaker
+      summary: Add a speaker
+      description: Add a speaker to your Airmeet event.
+      tags:
+      - Manage Event
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SpeakerCreate'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/session:
+    post:
+      operationId: createSession
+      summary: Create a session
+      description: Add a session to your Airmeet event.
+      tags:
+      - Manage Event
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionCreate'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/session/{sessionId}:
+    delete:
+      operationId: deleteSession
+      summary: Delete a session
+      description: Delete a session in your Airmeet.
+      tags:
+      - Manage Event
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      - $ref: '#/components/parameters/SessionId'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/status:
+    post:
+      operationId: updateAirmeetStatus
+      summary: Update event status
+      description: Start and end your Airmeet programmatically without visiting the dashboard. Status is one of ONGOING, PAUSED, FINISHED, ARCHIVE.
+      tags:
+      - Manage Event
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - status
+              properties:
+                status:
+                  type: string
+                  enum:
+                  - ONGOING
+                  - PAUSED
+                  - FINISHED
+                  - ARCHIVE
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/landing-page:
+    put:
+      operationId: customizeLandingPage
+      summary: Customize the landing page
+      description: Customize the landing page for your Airmeet.
+      tags:
+      - Manage Event
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ambience:
+                  type: string
+                layout:
+                  type: string
+                highlightColor:
+                  type: string
+                buttonTextColor:
+                  type: string
+                imageUrl:
+                  type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /airmeet/{airmeetId}/duplication:
+    post:
+      operationId: duplicateAirmeet
+      summary: Duplicate an event
+      description: Duplicate an Airmeet.
+      tags:
+      - Manage Event
+      parameters:
+      - $ref: '#/components/parameters/AirmeetId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                eventName:
+                  type: string
+                startTime:
+                  type: string
+                timezone:
+                  type: string
+                duplicateSpeakers:
+                  type: boolean
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    ServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid credentials/token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Success:
+      description: Successful response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Envelope'
+  schemas:
+    Envelope:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data: {}
+    SessionCreate:
+      type: object
+      required:
+      - sessionTitle
+      - sessionStartTime
+      properties:
+        sessionTitle:
+          type: string
+        sessionStartTime:
+          type: string
+        sessionDuration:
+          type: integer
+        hostEmail:
+          type: string
+          format: email
+        speakerEmails:
+          type: array
+          items:
+            type: string
+        cohostEmails:
+          type: array
+          items:
+            type: string
+        type:
+          type: string
+        tracks:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        boothId:
+          type: string
+        speedNetworkingData:
+          type: object
+        sessionMeta:
+          type: object
+    BoothCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        exhibitors:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        metaData:
+          type: object
+          properties:
+            chatEnabled:
+              type: boolean
+            loungeEnabled:
+              type: boolean
+            broadcastEnabled:
+              type: boolean
+            tableCount:
+              type: integer
+        exhibitorInfo:
+          type: object
+    SpeakerCreate:
+      type: object
+      required:
+      - name
+      - email
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        organisation:
+          type: string
+        designation:
+          type: string
+        imageUrl:
+          type: string
+        bio:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+        error:
+          type: string
+    AirmeetCreate:
+      type: object
+      required:
+      - hostEmail
+      - eventName
+      properties:
+        hostEmail:
+          type: string
+          format: email
+        eventName:
+          type: string
+        shortDesc:
+          type: string
+        startTime:
+          type: string
+        endTime:
+          type: string
+        timezone:
+          type: string
+        accessType:
+          type: string
+        eventType:
+          type: string
+        venueTitle:
+          type: string
+        registrationApprovalRequired:
+          type: boolean
+        venueCapacity:
+          type: integer
+  parameters:
+    SessionId:
+      name: sessionId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Session identifier.
+    AirmeetId:
+      name: airmeetId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Airmeet (event) identifier.
+  securitySchemes:
+    accessKey:
+      type: apiKey
+      in: header
+      name: X-Airmeet-Access-Key
+      description: Community access key, presented at POST /auth.
+    secretKey:
+      type: apiKey
+      in: header
+      name: X-Airmeet-Secret-Key
+      description: Community secret key, presented at POST /auth.
+    accessToken:
+      type: apiKey
+      in: header
+      name: X-Airmeet-Access-Token
+      description: Bearer access token issued by POST /auth, valid for 30 days.
+    webhookAccessKey:
+      type: apiKey
+      in: header
+      name: x-access-key
+      description: Access key for webhook registration.
+    webhookSecretKey:
+      type: apiKey
+      in: header
+      name: x-secret-key
+      description: Secret key for webhook registration.
+externalDocs:
+  description: Airmeet Public API documentation
+  url: https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction

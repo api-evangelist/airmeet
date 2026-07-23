@@ -1,0 +1,20 @@
+generated: '2026-07-17'
+method: searched
+source: https://updates.airmeet.com/en/
+scheme: product-updates-feed
+current_version: null
+url: https://updates.airmeet.com/en/
+categories:
+- Announcements
+- Events
+- Feature spotlight
+- Improvements
+- New features
+- Product releases
+- Updates
+note: >-
+  Airmeet publishes a categorized product-updates feed at updates.airmeet.com.
+  It is a marketing/product changelog rather than a dated API version log;
+  individual entry dates were not machine-extractable at capture time. The
+  public API surface itself is not separately versioned in this feed.
+entries: []

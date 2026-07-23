@@ -1,8 +1,30 @@
 aid: airmeet
 name: Airmeet
-description: 'Airmeet is a company surfaced as a portfolio company of accel, prosus-ventures, redpoint-ventures
-  and added to the API Evangelist network as a stub for enrichment. Sector: cloud-saas. This profile is
-  a lead awaiting the enrichment pipeline.'
+description: >-
+  Airmeet is a virtual, hybrid and in-person events platform used to run webinars,
+  conferences, summits, meetups, workshops and trade shows with interactive stages,
+  networking lounges, booths, polls, Q&A and engagement analytics. Its Public API
+  lets developers create and manage events (Airmeets), sessions, speakers, booths
+  and event series; manage registrations (add, block and unblock attendees with
+  custom fields); pull engagement and attendance data including polls, questions,
+  UTMs, recordings and replay attendance; and subscribe to 24+ webhook event
+  triggers. Authentication is a two-step flow: exchange an access key and secret
+  key for a 30-day access token, then send it as the X-Airmeet-Access-Token header.
+  The API is served from regional gateways (default Mumbai, EU and US). Airmeet is
+  backed by Accel, Prosus Ventures and Redpoint Ventures.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.airmeet.com/hub/wp-content/uploads/2023/03/Airmeet-Featured-Image.png
 url: https://raw.githubusercontent.com/api-evangelist/airmeet/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -18,12 +40,191 @@ modified: '2026-07-17'
 tags:
 - Company
 - Cloud Saas
-apis: []
+- Events
+- Virtual Events
+- Webinars
+- Event Management
+- Community
+- Webhooks
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: airmeet:airmeet-authentication-api
+  name: Airmeet Authentication API
+  description: Exchange access/secret keys for an access token.
+  humanURL: >-
+    https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction
+  baseURL: https://api-gateway.airmeet.com/prod
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/airmeet-authentication-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/airmeet-webhooks-asyncapi.yml
+  - type: Documentation
+    url: https://help.airmeet.com/support/solutions/82000362508
+  - type: APIReference
+    url: >-
+      https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction
+- aid: airmeet:airmeet-event-details-api
+  name: Airmeet Event Details API
+  description: Read events, participants, sessions, engagement and attendance data.
+  humanURL: >-
+    https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction
+  baseURL: https://api-gateway.airmeet.com/prod
+  tags:
+  - Event Details
+  properties:
+  - type: OpenAPI
+    url: openapi/airmeet-event-details-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/airmeet-webhooks-asyncapi.yml
+  - type: Documentation
+    url: https://help.airmeet.com/support/solutions/82000362508
+  - type: APIReference
+    url: >-
+      https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction
+- aid: airmeet:airmeet-manage-event-api
+  name: Airmeet Manage Event API
+  description: Create and manage events, speakers, sessions, booths and landing pages.
+  humanURL: >-
+    https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction
+  baseURL: https://api-gateway.airmeet.com/prod
+  tags:
+  - Manage Event
+  properties:
+  - type: OpenAPI
+    url: openapi/airmeet-manage-event-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/airmeet-webhooks-asyncapi.yml
+  - type: Documentation
+    url: https://help.airmeet.com/support/solutions/82000362508
+  - type: APIReference
+    url: >-
+      https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction
+- aid: airmeet:airmeet-manage-event-series-api
+  name: Airmeet Manage Event Series API
+  description: List event series and the events within a series.
+  humanURL: >-
+    https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction
+  baseURL: https://api-gateway.airmeet.com/prod
+  tags:
+  - Manage Event Series
+  properties:
+  - type: OpenAPI
+    url: openapi/airmeet-manage-event-series-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/airmeet-webhooks-asyncapi.yml
+  - type: Documentation
+    url: https://help.airmeet.com/support/solutions/82000362508
+  - type: APIReference
+    url: >-
+      https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction
+- aid: airmeet:airmeet-manage-registrations-api
+  name: Airmeet Manage Registrations API
+  description: Add authorized attendees and block or unblock them.
+  humanURL: >-
+    https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction
+  baseURL: https://api-gateway.airmeet.com/prod
+  tags:
+  - Manage Registrations
+  properties:
+  - type: OpenAPI
+    url: openapi/airmeet-manage-registrations-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/airmeet-webhooks-asyncapi.yml
+  - type: Documentation
+    url: https://help.airmeet.com/support/solutions/82000362508
+  - type: APIReference
+    url: >-
+      https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction
+- aid: airmeet:airmeet-webhooks-api
+  name: Airmeet Webhooks API
+  description: Register webhook subscriptions for Airmeet event triggers.
+  humanURL: >-
+    https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction
+  baseURL: https://api-gateway.airmeet.com/prod
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/airmeet-webhooks-api-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/airmeet-webhooks-asyncapi.yml
+  - type: Documentation
+    url: https://help.airmeet.com/support/solutions/82000362508
+  - type: APIReference
+    url: >-
+      https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction
 common:
 - type: Website
-  url: http://www.airmeet.com
+  url: https://www.airmeet.com/
+- type: DeveloperPortal
+  url: https://help.airmeet.com/support/solutions/82000362508
+- type: Documentation
+  url: https://help.airmeet.com/support/home
+- type: APIReference
+  url: https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction
+- type: GettingStarted
+  url: https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction
+- type: OpenAPI
+  url: openapi/airmeet-openapi.yml
+- type: AsyncAPI
+  url: asyncapi/airmeet-webhooks-asyncapi.yml
+- type: Webhooks
+  url: asyncapi/airmeet-webhooks-asyncapi.yml
+- type: Overlay
+  url: overlays/airmeet-openapi-overlay.yaml
+- type: MCPServer
+  url: mcp/airmeet-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Authentication
+  url: authentication/airmeet-authentication.yml
+- type: Conventions
+  url: conventions/airmeet-conventions.yml
+- type: ErrorCatalog
+  url: errors/airmeet-problem-types.yml
+- type: DataModel
+  url: data-model/airmeet-data-model.yml
+- type: Lifecycle
+  url: lifecycle/airmeet-lifecycle.yml
+- type: StatusPage
+  url: https://status.airmeet.com/
+- type: ChangeLog
+  url: https://updates.airmeet.com/en/
+- type: Conformance
+  url: conformance/airmeet-conformance.yml
+- type: Compliance
+  url: https://www.airmeet.com/hub/security-and-compliance/
+- type: TrustCenter
+  url: https://www.airmeet.com/hub/security-and-compliance/
+- type: DomainSecurity
+  url: security/airmeet-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/airmeet-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.airmeet.com/hub/responsible-disclosure/
+- type: Integrations
+  url: https://www.airmeet.com/hub/product-integrations/
+- type: Support
+  url: https://help.airmeet.com/support/home
+- type: Blog
+  url: https://www.airmeet.com/hub/blog/
+- type: Pricing
+  url: https://www.airmeet.com/hub/pricing/
+- type: SignUp
+  url: https://www.airmeet.com/signup
+- type: TermsOfService
+  url: https://www.airmeet.com/hub/terms-of-use/
+- type: PrivacyPolicy
+  url: https://www.airmeet.com/hub/privacy-policy/
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

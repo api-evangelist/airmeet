@@ -1,0 +1,24 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/airmeet-openapi.yml
+format: custom-envelope
+envelope:
+  shape: '{ "success": false, "message": "string", "error": "string" }'
+  note: >-
+    Airmeet does not use RFC 9457 application/problem+json. Errors return the
+    standard response envelope with success:false and a message.
+problems:
+- status: 400
+  title: Bad Request
+  description: The request was malformed or missing required fields.
+- status: 401
+  title: Unauthorized
+  description: Missing or invalid access key, secret key, or access token.
+- status: 412
+  title: Precondition Failed
+  description: >-
+    A precondition was not met, e.g. requested event data is not yet available
+    for an asynchronous export.
+- status: 500
+  title: Internal Server Error
+  description: An unexpected error occurred on the Airmeet side.

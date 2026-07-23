@@ -1,0 +1,42 @@
+generated: '2026-07-17'
+method: searched
+hosts:
+- host: https://www.airmeet.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    note: Returns the SPA HTML shell (soft-404), not a real RFC 9116 security.txt.
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    note: SPA HTML shell (soft-404), not an OIDC discovery document.
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    note: SPA HTML shell (soft-404), not an RFC 8414 document.
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    note: SPA HTML shell (soft-404), not an api-catalog document.
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: null
+    note: SPA HTML shell (soft-404), not a real ai-plugin manifest.
+- host: https://api-gateway.airmeet.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/api-catalog
+    status: 403
+  - path: /.well-known/ai-plugin.json
+    status: 403
+summary: >-
+  No genuine /.well-known documents are published. The website returns its
+  single-page-app HTML for every /.well-known path (soft-200), and the API
+  gateway host WAF-blocks them (403). No WellKnown or SecurityTxt pointer is
+  emitted.

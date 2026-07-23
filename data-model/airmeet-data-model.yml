@@ -1,0 +1,81 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/airmeet-openapi.yml
+entities:
+- name: Community
+  description: The top-level tenant that owns events and event series.
+- name: EventSeries
+  description: A named grouping of related Airmeets within a community.
+- name: Airmeet
+  description: A single event (virtual, hybrid or in-person). Referenced by airmeetId.
+- name: Session
+  description: A session (talk/track slot) inside an Airmeet. Referenced by sessionId.
+- name: Speaker
+  description: A speaker added to an Airmeet.
+- name: Attendee
+  description: An authorized/registered participant, keyed by email.
+- name: Booth
+  description: An exhibitor booth inside an Airmeet. Referenced by boothId.
+- name: Poll
+  description: A poll and its responses within an Airmeet.
+- name: Question
+  description: A Q&A question asked within an Airmeet.
+- name: Track
+  description: A track used to organize sessions.
+- name: CustomField
+  description: A custom registration field on an Airmeet.
+relationships:
+- from: Community
+  to: EventSeries
+  type: has_many
+- from: Community
+  to: Airmeet
+  type: has_many
+- from: EventSeries
+  to: Airmeet
+  type: has_many
+  via: eventSeriesId
+- from: Airmeet
+  to: Session
+  type: has_many
+  via: airmeetId
+- from: Airmeet
+  to: Speaker
+  type: has_many
+  via: airmeetId
+- from: Airmeet
+  to: Attendee
+  type: has_many
+  via: airmeetId
+- from: Airmeet
+  to: Booth
+  type: has_many
+  via: airmeetId
+- from: Airmeet
+  to: Poll
+  type: has_many
+  via: airmeetId
+- from: Airmeet
+  to: Question
+  type: has_many
+  via: airmeetId
+- from: Airmeet
+  to: Track
+  type: has_many
+  via: airmeetId
+- from: Airmeet
+  to: CustomField
+  type: has_many
+  via: airmeetId
+- from: Session
+  to: Speaker
+  type: has_many
+  via: speakerEmails
+- from: Session
+  to: Booth
+  type: belongs_to
+  via: boothId
+- from: Session
+  to: Track
+  type: has_many
+  via: tracks

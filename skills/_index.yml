@@ -1,0 +1,20 @@
+generated: '2026-07-17'
+method: generated
+source: openapi/airmeet-openapi.yml
+skills:
+- file: airmeet-create-and-launch-event.md
+  name: Create and launch an Airmeet event
+  api: openapi/airmeet-openapi.yml
+  operations: [authenticate, createAirmeet, addSpeaker, createSession, updateAirmeetStatus]
+- file: airmeet-manage-registrations.md
+  name: Manage event registrations
+  api: openapi/airmeet-openapi.yml
+  operations: [authenticate, addAttendee, blockAttendee, unblockAttendee, getParticipants]
+- file: airmeet-pull-engagement-data.md
+  name: Pull post-event engagement and attendance data
+  api: openapi/airmeet-openapi.yml
+  operations: [authenticate, listAirmeets, getAttendees, getPolls, getQuestions, getSessionRecordings]
+- file: airmeet-subscribe-webhooks.md
+  name: Subscribe to Airmeet webhook events
+  api: openapi/airmeet-openapi.yml
+  operations: [registerWebhook]
