@@ -161,6 +161,8 @@ apis:
     url: >-
       https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/airmeet/overview
 - type: Website
   url: https://www.airmeet.com/
 - type: DeveloperPortal
