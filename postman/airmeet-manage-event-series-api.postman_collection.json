@@ -1,0 +1,412 @@
+{
+  "info": {
+    "_postman_id": "32ca05e0-976e-475a-8380-4339432b9416",
+    "name": "Airmeet Public Authentication Manage Event Series API",
+    "description": "The Airmeet Public API lets you programmatically manage events (Airmeets), registrations, sessions, speakers, booths and event series on the Airmeet virtual, hybrid and in-person events platform, and read back event engagement and attendance data. Authentication is a two-step flow: exchange an access key and secret key at POST /auth for a bearer access token (valid 30 days), then send that token as the X-Airmeet-Access-Token header on every other request. Several read endpoints (attendees, booth attendance, UTMs, replay attendance) are asynchronous and return a job/URL to poll for the result. Responses share a { \"success\": boolean, \"data\": ... } envelope.\n\nContact Support:\n Name: Airmeet Support\n Email: support@airmeet.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:29:21.000Z",
+    "updatedAt": "2026-07-28T00:29:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-32ca05e0-976e-475a-8380-4339432b9416"
+  },
+  "item": [
+    {
+      "name": "event-series",
+      "item": [
+        {
+          "name": "{eventSeriesId}",
+          "item": [
+            {
+              "name": "events",
+              "item": [
+                {
+                  "name": "List events within a series",
+                  "id": "0d0a58e6-2449-4a0c-855c-87bb074c44f6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/event-series/:eventSeriesId/events",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "event-series",
+                        ":eventSeriesId",
+                        "events"
+                      ],
+                      "variable": [
+                        {
+                          "id": "90bb7a23-b122-4a4e-bcac-222de65c7a5f",
+                          "key": "eventSeriesId",
+                          "value": "<string>",
+                          "description": "(Required) Event series identifier."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a list of all events inside an event series."
+                  },
+                  "response": [
+                    {
+                      "id": "c19ae488-1727-46cf-bc1e-f35de45c3588",
+                      "name": "Successful response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Airmeet-Access-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/event-series/:eventSeriesId/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "event-series",
+                            ":eventSeriesId",
+                            "events"
+                          ],
+                          "variable": [
+                            {
+                              "key": "eventSeriesId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:29:22.000Z",
+                      "updatedAt": "2026-07-28T00:29:22.000Z",
+                      "uid": "35240-c19ae488-1727-46cf-bc1e-f35de45c3588"
+                    },
+                    {
+                      "id": "f7cc2194-fbd3-4893-bc55-a4dd18016528",
+                      "name": "Missing or invalid credentials/token.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Airmeet-Access-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/event-series/:eventSeriesId/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "event-series",
+                            ":eventSeriesId",
+                            "events"
+                          ],
+                          "variable": [
+                            {
+                              "key": "eventSeriesId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:29:22.000Z",
+                      "updatedAt": "2026-07-28T00:29:22.000Z",
+                      "uid": "35240-f7cc2194-fbd3-4893-bc55-a4dd18016528"
+                    },
+                    {
+                      "id": "fb802246-7b99-4b27-aadc-8422bbed4cf8",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "X-Airmeet-Access-Token",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/event-series/:eventSeriesId/events",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "event-series",
+                            ":eventSeriesId",
+                            "events"
+                          ],
+                          "variable": [
+                            {
+                              "key": "eventSeriesId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:29:22.000Z",
+                      "updatedAt": "2026-07-28T00:29:22.000Z",
+                      "uid": "35240-fb802246-7b99-4b27-aadc-8422bbed4cf8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:29:22.000Z",
+                  "updatedAt": "2026-07-28T00:29:22.000Z",
+                  "uid": "35240-0d0a58e6-2449-4a0c-855c-87bb074c44f6"
+                }
+              ],
+              "id": "3482c26d-232c-45c6-a62f-a5d6c67c420d",
+              "createdAt": "2026-07-28T00:29:22.000Z",
+              "updatedAt": "2026-07-28T00:29:22.000Z",
+              "uid": "35240-3482c26d-232c-45c6-a62f-a5d6c67c420d"
+            }
+          ],
+          "id": "f6fccdc5-2471-4f40-837d-9510d153efca",
+          "createdAt": "2026-07-28T00:29:22.000Z",
+          "updatedAt": "2026-07-28T00:29:22.000Z",
+          "uid": "35240-f6fccdc5-2471-4f40-837d-9510d153efca"
+        },
+        {
+          "name": "List event series",
+          "id": "4b9fd076-73c3-4fff-af28-4a2d65a35bde",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/event-series",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "event-series"
+              ]
+            },
+            "description": "Get a list of all event series in a community."
+          },
+          "response": [
+            {
+              "id": "d2d019b6-276f-4fc1-9b75-8eea5205a4c5",
+              "name": "Successful response.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Airmeet-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/event-series",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "event-series"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"success\": \"<boolean>\",\n  \"data\": {}\n}",
+              "createdAt": "2026-07-28T00:29:22.000Z",
+              "updatedAt": "2026-07-28T00:29:22.000Z",
+              "uid": "35240-d2d019b6-276f-4fc1-9b75-8eea5205a4c5"
+            },
+            {
+              "id": "d2fb9083-8007-4c59-b0e8-28185fa56eee",
+              "name": "Missing or invalid credentials/token.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Airmeet-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/event-series",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "event-series"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:29:22.000Z",
+              "updatedAt": "2026-07-28T00:29:22.000Z",
+              "uid": "35240-d2fb9083-8007-4c59-b0e8-28185fa56eee"
+            },
+            {
+              "id": "cf78a8a2-8d3e-4cf2-a793-6b000b9392ec",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Airmeet-Access-Token",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/event-series",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "event-series"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:29:22.000Z",
+              "updatedAt": "2026-07-28T00:29:22.000Z",
+              "uid": "35240-cf78a8a2-8d3e-4cf2-a793-6b000b9392ec"
+            }
+          ],
+          "createdAt": "2026-07-28T00:29:22.000Z",
+          "updatedAt": "2026-07-28T00:29:22.000Z",
+          "uid": "35240-4b9fd076-73c3-4fff-af28-4a2d65a35bde"
+        }
+      ],
+      "id": "3c55cf98-0d19-48ab-ac77-d62425274778",
+      "createdAt": "2026-07-28T00:29:22.000Z",
+      "updatedAt": "2026-07-28T00:29:22.000Z",
+      "uid": "35240-3c55cf98-0d19-48ab-ac77-d62425274778"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Airmeet-Access-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-gateway.airmeet.com/prod"
+    }
+  ]
+}

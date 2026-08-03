@@ -1,0 +1,226 @@
+{
+  "info": {
+    "_postman_id": "a802a0e0-39f8-4eea-98d3-80aa52b74713",
+    "name": "Airmeet Public Authentication API",
+    "description": "The Airmeet Public API lets you programmatically manage events (Airmeets), registrations, sessions, speakers, booths and event series on the Airmeet virtual, hybrid and in-person events platform, and read back event engagement and attendance data. Authentication is a two-step flow: exchange an access key and secret key at POST /auth for a bearer access token (valid 30 days), then send that token as the X-Airmeet-Access-Token header on every other request. Several read endpoints (attendees, booth attendance, UTMs, replay attendance) are asynchronous and return a job/URL to poll for the result. Responses share a { \"success\": boolean, \"data\": ... } envelope.\n\nContact Support:\n Name: Airmeet Support\n Email: support@airmeet.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:29:18.000Z",
+    "updatedAt": "2026-07-28T00:29:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a802a0e0-39f8-4eea-98d3-80aa52b74713"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "Authenticate and issue an access token",
+          "id": "a9095e6a-858f-474d-9622-4210a646b938",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "X-Airmeet-Access-Key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth"
+              ]
+            },
+            "description": "Exchange the community access key and secret key for an access token valid for 30 days. The token can be cached by the consumer service."
+          },
+          "response": [
+            {
+              "id": "e6ad85ec-72b9-46e6-8f6f-54f3408947b3",
+              "name": "Access token issued.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Airmeet-Access-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"success\": \"<boolean>\",\n  \"data\": {\n    \"label\": \"<string>\",\n    \"token\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T00:29:18.000Z",
+              "updatedAt": "2026-07-28T00:29:18.000Z",
+              "uid": "35240-e6ad85ec-72b9-46e6-8f6f-54f3408947b3"
+            },
+            {
+              "id": "15376f03-90c4-40ed-bb7d-0e3ba7115d0e",
+              "name": "Missing or invalid credentials/token.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Airmeet-Access-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:29:18.000Z",
+              "updatedAt": "2026-07-28T00:29:18.000Z",
+              "uid": "35240-15376f03-90c4-40ed-bb7d-0e3ba7115d0e"
+            },
+            {
+              "id": "1b1ae2af-58a6-43c9-85ad-d863b24256ab",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "X-Airmeet-Access-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T00:29:18.000Z",
+              "updatedAt": "2026-07-28T00:29:18.000Z",
+              "uid": "35240-1b1ae2af-58a6-43c9-85ad-d863b24256ab"
+            }
+          ],
+          "createdAt": "2026-07-28T00:29:18.000Z",
+          "updatedAt": "2026-07-28T00:29:18.000Z",
+          "uid": "35240-a9095e6a-858f-474d-9622-4210a646b938"
+        }
+      ],
+      "id": "52c1bf93-4771-4a9d-b860-25adf45aac18",
+      "createdAt": "2026-07-28T00:29:18.000Z",
+      "updatedAt": "2026-07-28T00:29:18.000Z",
+      "uid": "35240-52c1bf93-4771-4a9d-b860-25adf45aac18"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Airmeet-Access-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-gateway.airmeet.com/prod"
+    }
+  ]
+}

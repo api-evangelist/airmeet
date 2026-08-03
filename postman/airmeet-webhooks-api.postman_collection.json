@@ -1,0 +1,366 @@
+{
+  "info": {
+    "_postman_id": "0fb06605-9950-470f-aa50-1bddfee52487",
+    "name": "Airmeet Public Authentication Webhooks API",
+    "description": "The Airmeet Public API lets you programmatically manage events (Airmeets), registrations, sessions, speakers, booths and event series on the Airmeet virtual, hybrid and in-person events platform, and read back event engagement and attendance data. Authentication is a two-step flow: exchange an access key and secret key at POST /auth for a bearer access token (valid 30 days), then send that token as the X-Airmeet-Access-Token header on every other request. Several read endpoints (attendees, booth attendance, UTMs, replay attendance) are asynchronous and return a job/URL to poll for the result. Responses share a { \"success\": boolean, \"data\": ... } envelope.\n\nContact Support:\n Name: Airmeet Support\n Email: support@airmeet.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T00:29:23.000Z",
+    "updatedAt": "2026-07-28T00:29:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0fb06605-9950-470f-aa50-1bddfee52487"
+  },
+  "item": [
+    {
+      "name": "platform-integration",
+      "item": [
+        {
+          "name": "v1",
+          "item": [
+            {
+              "name": "webhook-register",
+              "item": [
+                {
+                  "name": "Register a webhook subscription",
+                  "id": "8f92fbd3-ae23-4e7d-99b5-94f5ce8f3629",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-access-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"triggerMetaInfoId\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"platformName\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/platform-integration/v1/webhook-register",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "platform-integration",
+                        "v1",
+                        "webhook-register"
+                      ]
+                    },
+                    "description": "Register a webhook endpoint to receive Airmeet event triggers. Uses the x-access-key and x-secret-key headers. Provide a triggerMetaInfoId for the event type to subscribe to; event-specific triggers accept an airmeetId query parameter."
+                  },
+                  "response": [
+                    {
+                      "id": "0d4e2855-1a7b-4b2a-95ea-534a187795e8",
+                      "name": "Successful response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-access-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"triggerMetaInfoId\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"platformName\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform-integration/v1/webhook-register",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform-integration",
+                            "v1",
+                            "webhook-register"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"data\": {}\n}",
+                      "createdAt": "2026-07-28T00:29:24.000Z",
+                      "updatedAt": "2026-07-28T00:29:24.000Z",
+                      "uid": "35240-0d4e2855-1a7b-4b2a-95ea-534a187795e8"
+                    },
+                    {
+                      "id": "4b415ba8-751e-469b-afc4-5508f9734b99",
+                      "name": "Bad request.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-access-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"triggerMetaInfoId\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"platformName\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform-integration/v1/webhook-register",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform-integration",
+                            "v1",
+                            "webhook-register"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:29:24.000Z",
+                      "updatedAt": "2026-07-28T00:29:24.000Z",
+                      "uid": "35240-4b415ba8-751e-469b-afc4-5508f9734b99"
+                    },
+                    {
+                      "id": "3f6c8acb-7660-46f7-b90e-ad6efe49427b",
+                      "name": "Missing or invalid credentials/token.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-access-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"triggerMetaInfoId\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"platformName\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform-integration/v1/webhook-register",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform-integration",
+                            "v1",
+                            "webhook-register"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:29:24.000Z",
+                      "updatedAt": "2026-07-28T00:29:24.000Z",
+                      "uid": "35240-3f6c8acb-7660-46f7-b90e-ad6efe49427b"
+                    },
+                    {
+                      "id": "2b09009f-40d6-4b7c-8249-34e9e1b7f547",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-access-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"triggerMetaInfoId\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"description\": \"<string>\",\n  \"platformName\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/platform-integration/v1/webhook-register",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "platform-integration",
+                            "v1",
+                            "webhook-register"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T00:29:24.000Z",
+                      "updatedAt": "2026-07-28T00:29:24.000Z",
+                      "uid": "35240-2b09009f-40d6-4b7c-8249-34e9e1b7f547"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T00:29:24.000Z",
+                  "updatedAt": "2026-07-28T00:29:24.000Z",
+                  "uid": "35240-8f92fbd3-ae23-4e7d-99b5-94f5ce8f3629"
+                }
+              ],
+              "id": "3b110a38-3146-4006-9413-7d1c9bde97a3",
+              "createdAt": "2026-07-28T00:29:24.000Z",
+              "updatedAt": "2026-07-28T00:29:24.000Z",
+              "uid": "35240-3b110a38-3146-4006-9413-7d1c9bde97a3"
+            }
+          ],
+          "id": "83e3727a-4dc3-4b90-b9f7-1243202e77e0",
+          "createdAt": "2026-07-28T00:29:24.000Z",
+          "updatedAt": "2026-07-28T00:29:24.000Z",
+          "uid": "35240-83e3727a-4dc3-4b90-b9f7-1243202e77e0"
+        }
+      ],
+      "id": "eb70316a-b707-4d4c-8774-4528e1188f20",
+      "createdAt": "2026-07-28T00:29:24.000Z",
+      "updatedAt": "2026-07-28T00:29:24.000Z",
+      "uid": "35240-eb70316a-b707-4d4c-8774-4528e1188f20"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Airmeet-Access-Token",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-gateway.airmeet.com/prod"
+    }
+  ]
+}
