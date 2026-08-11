@@ -174,7 +174,7 @@ common:
 - type: GettingStarted
   url: https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction
 - type: OpenAPI
-  url: openapi/airmeet-openapi.yml
+  url: openapi/_original/airmeet-openapi.yml
 - type: AsyncAPI
   url: asyncapi/airmeet-webhooks-asyncapi.yml
 - type: Webhooks
