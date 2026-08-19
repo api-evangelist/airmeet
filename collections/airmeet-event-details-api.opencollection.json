@@ -1,0 +1,304 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Airmeet Public Authentication Event Details API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Airmeet-Access-Token",
+      "value": "{{X-Airmeet-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Event Details",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List accessible Airmeets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.airmeet.com/prod/airmeets",
+            "params": [
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              }
+            ]
+          },
+          "docs": "List all Airmeets (events) the credentials can access, with pagination."
+        },
+        {
+          "info": {
+            "name": "Get event and session details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/info",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ]
+          },
+          "docs": "Fetch the sessions and metadata within an event."
+        },
+        {
+          "info": {
+            "name": "Get event participants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/participants",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ]
+          },
+          "docs": "Fetch the participants/registrants of an event."
+        },
+        {
+          "info": {
+            "name": "Get custom registration fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/custom-fields",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ]
+          },
+          "docs": "Fetch the custom registration fields configured for an event."
+        },
+        {
+          "info": {
+            "name": "Get event attendance data (async)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/attendees",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ]
+          },
+          "docs": "Fetch event attendance data. This is an asynchronous endpoint that returns a job reference to poll for the generated data."
+        },
+        {
+          "info": {
+            "name": "Get session attendance (async)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.airmeet.com/prod/session/:sessionId/attendees",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "Session identifier."
+              }
+            ]
+          },
+          "docs": "Fetch session attendance data asynchronously."
+        },
+        {
+          "info": {
+            "name": "List event booths",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/booths",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ]
+          },
+          "docs": "List all booths configured for an event."
+        },
+        {
+          "info": {
+            "name": "Get booth attendance (async)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/booth/:boothId/booth-attendance",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              },
+              {
+                "name": "boothId",
+                "value": "",
+                "type": "path",
+                "description": "Booth identifier."
+              }
+            ]
+          },
+          "docs": "Fetch booth attendees asynchronously."
+        },
+        {
+          "info": {
+            "name": "Get poll responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/polls",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ]
+          },
+          "docs": "Fetch poll responses submitted during an event."
+        },
+        {
+          "info": {
+            "name": "Get Q&A questions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/questions",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ]
+          },
+          "docs": "Fetch questions asked during an event."
+        },
+        {
+          "info": {
+            "name": "Get event tracks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/tracks",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ]
+          },
+          "docs": "Fetch the tracks configured for an event."
+        },
+        {
+          "info": {
+            "name": "Get registration UTM parameters (async)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/utms",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ]
+          },
+          "docs": "Fetch registration UTM parameters asynchronously."
+        },
+        {
+          "info": {
+            "name": "Get session recording links",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/session-recordings",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ]
+          },
+          "docs": "Fetch download links for session recordings."
+        },
+        {
+          "info": {
+            "name": "Get replay attendance (async)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/event-replay-attendees",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ]
+          },
+          "docs": "Fetch on-demand/replay attendance data asynchronously."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

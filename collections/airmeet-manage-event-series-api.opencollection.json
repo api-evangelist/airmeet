@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Airmeet Public Authentication Manage Event Series API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Airmeet-Access-Token",
+      "value": "{{X-Airmeet-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Manage Event Series",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List event series",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.airmeet.com/prod/event-series"
+          },
+          "docs": "Get a list of all event series in a community."
+        },
+        {
+          "info": {
+            "name": "List events within a series",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-gateway.airmeet.com/prod/event-series/:eventSeriesId/events",
+            "params": [
+              {
+                "name": "eventSeriesId",
+                "value": "",
+                "type": "path",
+                "description": "Event series identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all events inside an event series."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

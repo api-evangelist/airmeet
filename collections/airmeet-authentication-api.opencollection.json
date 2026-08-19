@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Airmeet Public Authentication API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Airmeet-Access-Token",
+      "value": "{{X-Airmeet-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate and issue an access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.airmeet.com/prod/auth",
+            "auth": {
+              "type": "apikey",
+              "key": "X-Airmeet-Access-Key",
+              "value": "{{X-Airmeet-Access-Key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Exchange the community access key and secret key for an access token valid for 30 days. The token can be cached by the consumer service."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

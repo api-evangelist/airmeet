@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Airmeet Public Authentication Manage Registrations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Airmeet-Access-Token",
+      "value": "{{X-Airmeet-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Manage Registrations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add an authorized attendee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/attendee",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an attendee authorized to enter the specified Airmeet. Supports custom registration field mappings via customFieldMapping."
+        },
+        {
+          "info": {
+            "name": "Block an attendee",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/attendee/block",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Block an attendee from the specified Airmeet."
+        },
+        {
+          "info": {
+            "name": "Unblock an attendee",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/attendee/unblock",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove block restrictions on an attendee."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -6,9 +6,8 @@ server:
   name: airmeet
   transport: http
   url: null
-note: >-
-  No official Airmeet MCP server was found. This is a candidate tool list
-  derived one-to-one from the documented Public API operations.
+note: No official Airmeet MCP server was found. This is a candidate tool list derived one-to-one from
+  the documented Public API operations.
 tools:
 - name: authenticate
   description: Exchange access/secret keys for a 30-day access token.
@@ -97,3 +96,9 @@ tools:
 - name: register_webhook
   description: Register a webhook subscription for an event trigger.
   source_operation: openapi/airmeet-openapi.yml#registerWebhook
+deployment:
+  mode: none
+  verified: derived
+  tools: 29
+  checked: '2026-08-12'
+  source: catalog MCP census

@@ -1,0 +1,204 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Airmeet Public Authentication Manage Event API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Airmeet-Access-Token",
+      "value": "{{X-Airmeet-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Manage Event",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a booth",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/booths",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a booth to your Airmeet event."
+        },
+        {
+          "info": {
+            "name": "Create an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an Airmeet in your community."
+        },
+        {
+          "info": {
+            "name": "Add a speaker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/speaker",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a speaker to your Airmeet event."
+        },
+        {
+          "info": {
+            "name": "Create a session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/session",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a session to your Airmeet event."
+        },
+        {
+          "info": {
+            "name": "Delete a session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/session/:sessionId",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              },
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "Session identifier."
+              }
+            ]
+          },
+          "docs": "Delete a session in your Airmeet."
+        },
+        {
+          "info": {
+            "name": "Update event status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/status",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start and end your Airmeet programmatically without visiting the dashboard. Status is one of ONGOING, PAUSED, FINISHED, ARCHIVE."
+        },
+        {
+          "info": {
+            "name": "Customize the landing page",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/landing-page",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Customize the landing page for your Airmeet."
+        },
+        {
+          "info": {
+            "name": "Duplicate an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.airmeet.com/prod/airmeet/:airmeetId/duplication",
+            "params": [
+              {
+                "name": "airmeetId",
+                "value": "",
+                "type": "path",
+                "description": "Airmeet (event) identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Duplicate an Airmeet."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

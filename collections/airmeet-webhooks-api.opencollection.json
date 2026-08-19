@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Airmeet Public Authentication Webhooks API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Airmeet-Access-Token",
+      "value": "{{X-Airmeet-Access-Token}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Register a webhook subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-gateway.airmeet.com/prod/platform-integration/v1/webhook-register",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-access-key",
+              "value": "{{x-access-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Register a webhook endpoint to receive Airmeet event triggers. Uses the x-access-key and x-secret-key headers. Provide a triggerMetaInfoId for the event type to subscribe to; event-specific triggers accept an airmeetId query parameter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
