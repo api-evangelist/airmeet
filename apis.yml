@@ -40,6 +40,15 @@ modified: '2026-07-17'
 tags:
 - Company
 - Cloud Saas
+- Event
+- Virtual Events
+- Webinars
+- Event Management
+- Community
+- Webhook
+tags_raw:
+- Company
+- Cloud Saas
 - Events
 - Virtual Events
 - Webinars
@@ -149,6 +158,8 @@ apis:
     https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction
   baseURL: https://api-gateway.airmeet.com/prod
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
