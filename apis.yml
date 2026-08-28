@@ -12,6 +12,18 @@ description: >-
   key for a 30-day access token, then send it as the X-Airmeet-Access-Token header.
   The API is served from regional gateways (default Mumbai, EU and US). Airmeet is
   backed by Accel, Prosus Ventures and Redpoint Ventures.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
