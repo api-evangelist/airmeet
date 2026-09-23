@@ -1,12 +1,7 @@
 {
   "provider": "airmeet",
   "sources": [
-    "airmeet-authentication-api-openapi.yml",
-    "airmeet-event-details-api-openapi.yml",
-    "airmeet-manage-event-api-openapi.yml",
-    "airmeet-manage-event-series-api-openapi.yml",
-    "airmeet-manage-registrations-api-openapi.yml",
-    "airmeet-webhooks-api-openapi.yml"
+    "_original/airmeet-openapi.yml"
   ],
   "outputs": [
     "airmeet-authentication-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "airmeet-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "airmeet-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "airmeet-event-details-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "airmeet-manage-event-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "airmeet-manage-event-series-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "airmeet-manage-registrations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "airmeet-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
