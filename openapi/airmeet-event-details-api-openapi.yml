@@ -269,50 +269,7 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
-  responses:
-    PreconditionFailed:
-      description: Precondition failed (e.g. data not yet available).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Internal server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Success:
-      description: Successful response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Envelope'
-    Unauthorized:
-      description: Missing or invalid credentials/token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    AsyncAccepted:
-      description: Asynchronous job accepted; poll the returned reference for data.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Envelope'
   schemas:
-    Envelope:
-      type: object
-      properties:
-        success:
-          type: boolean
-        data: {}
     Error:
       type: object
       properties:
@@ -323,14 +280,13 @@ components:
           type: string
         error:
           type: string
+    Envelope:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data: {}
   parameters:
-    SessionId:
-      name: sessionId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Session identifier.
     AirmeetId:
       name: airmeetId
       in: path
@@ -338,6 +294,50 @@ components:
       schema:
         type: string
       description: Airmeet (event) identifier.
+    SessionId:
+      name: sessionId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Session identifier.
+  responses:
+    Unauthorized:
+      description: Missing or invalid credentials/token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    AsyncAccepted:
+      description: Asynchronous job accepted; poll the returned reference for data.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Envelope'
+    BadRequest:
+      description: Bad request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    PreconditionFailed:
+      description: Precondition failed (e.g. data not yet available).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Success:
+      description: Successful response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Envelope'
   securitySchemes:
     accessKey:
       type: apiKey

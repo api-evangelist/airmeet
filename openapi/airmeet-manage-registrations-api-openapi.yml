@@ -107,6 +107,22 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+        error:
+          type: string
+    Envelope:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data: {}
     AttendeeCreate:
       type: object
       required:
@@ -150,37 +166,17 @@ components:
                 type: string
               value:
                 type: string
-    Envelope:
-      type: object
-      properties:
-        success:
-          type: boolean
-        data: {}
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: false
-        message:
-          type: string
-        error:
-          type: string
+  parameters:
+    AirmeetId:
+      name: airmeetId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Airmeet (event) identifier.
   responses:
     ServerError:
       description: Internal server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Success:
-      description: Successful response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Envelope'
-    BadRequest:
-      description: Bad request.
       content:
         application/json:
           schema:
@@ -191,14 +187,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    AirmeetId:
-      name: airmeetId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Airmeet (event) identifier.
+    BadRequest:
+      description: Bad request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Success:
+      description: Successful response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Envelope'
   securitySchemes:
     accessKey:
       type: apiKey
