@@ -235,30 +235,22 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  parameters:
+    SessionId:
+      name: sessionId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Session identifier.
+    AirmeetId:
+      name: airmeetId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Airmeet (event) identifier.
   schemas:
-    SpeakerCreate:
-      type: object
-      required:
-      - name
-      - email
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        organisation:
-          type: string
-        designation:
-          type: string
-        imageUrl:
-          type: string
-        bio:
-          type: string
-        city:
-          type: string
-        country:
-          type: string
     Error:
       type: object
       properties:
@@ -269,6 +261,41 @@ components:
           type: string
         error:
           type: string
+    Envelope:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data: {}
+    AirmeetCreate:
+      type: object
+      required:
+      - hostEmail
+      - eventName
+      properties:
+        hostEmail:
+          type: string
+          format: email
+        eventName:
+          type: string
+        shortDesc:
+          type: string
+        startTime:
+          type: string
+        endTime:
+          type: string
+        timezone:
+          type: string
+        accessType:
+          type: string
+        eventType:
+          type: string
+        venueTitle:
+          type: string
+        registrationApprovalRequired:
+          type: boolean
+        venueCapacity:
+          type: integer
     SessionCreate:
       type: object
       required:
@@ -308,6 +335,29 @@ components:
           type: object
         sessionMeta:
           type: object
+    SpeakerCreate:
+      type: object
+      required:
+      - name
+      - email
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        organisation:
+          type: string
+        designation:
+          type: string
+        imageUrl:
+          type: string
+        bio:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
     BoothCreate:
       type: object
       required:
@@ -336,59 +386,9 @@ components:
               type: integer
         exhibitorInfo:
           type: object
-    Envelope:
-      type: object
-      properties:
-        success:
-          type: boolean
-        data: {}
-    AirmeetCreate:
-      type: object
-      required:
-      - hostEmail
-      - eventName
-      properties:
-        hostEmail:
-          type: string
-          format: email
-        eventName:
-          type: string
-        shortDesc:
-          type: string
-        startTime:
-          type: string
-        endTime:
-          type: string
-        timezone:
-          type: string
-        accessType:
-          type: string
-        eventType:
-          type: string
-        venueTitle:
-          type: string
-        registrationApprovalRequired:
-          type: boolean
-        venueCapacity:
-          type: integer
-  parameters:
-    AirmeetId:
-      name: airmeetId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Airmeet (event) identifier.
-    SessionId:
-      name: sessionId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Session identifier.
   responses:
-    ServerError:
-      description: Internal server error.
+    BadRequest:
+      description: Bad request.
       content:
         application/json:
           schema:
@@ -399,18 +399,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Success:
       description: Successful response.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Envelope'
+    ServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     accessKey:
       type: apiKey

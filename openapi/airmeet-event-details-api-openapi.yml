@@ -269,6 +269,21 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  parameters:
+    SessionId:
+      name: sessionId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Session identifier.
+    AirmeetId:
+      name: airmeetId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Airmeet (event) identifier.
   schemas:
     Error:
       type: object
@@ -286,34 +301,7 @@ components:
         success:
           type: boolean
         data: {}
-  parameters:
-    AirmeetId:
-      name: airmeetId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Airmeet (event) identifier.
-    SessionId:
-      name: sessionId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Session identifier.
   responses:
-    Unauthorized:
-      description: Missing or invalid credentials/token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    ServerError:
-      description: Internal server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     AsyncAccepted:
       description: Asynchronous job accepted; poll the returned reference for data.
       content:
@@ -332,12 +320,24 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid credentials/token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     Success:
       description: Successful response.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Envelope'
+    ServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     accessKey:
       type: apiKey

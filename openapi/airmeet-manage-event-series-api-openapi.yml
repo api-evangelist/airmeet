@@ -75,12 +75,6 @@ components:
           type: boolean
         data: {}
   responses:
-    ServerError:
-      description: Internal server error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Missing or invalid credentials/token.
       content:
@@ -93,6 +87,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Envelope'
+    ServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     accessKey:
       type: apiKey

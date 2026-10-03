@@ -117,12 +117,6 @@ components:
           type: string
         error:
           type: string
-    Envelope:
-      type: object
-      properties:
-        success:
-          type: boolean
-        data: {}
     AttendeeCreate:
       type: object
       required:
@@ -166,17 +160,15 @@ components:
                 type: string
               value:
                 type: string
-  parameters:
-    AirmeetId:
-      name: airmeetId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Airmeet (event) identifier.
+    Envelope:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data: {}
   responses:
-    ServerError:
-      description: Internal server error.
+    BadRequest:
+      description: Bad request.
       content:
         application/json:
           schema:
@@ -187,18 +179,26 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Success:
       description: Successful response.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Envelope'
+    ServerError:
+      description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    AirmeetId:
+      name: airmeetId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Airmeet (event) identifier.
   securitySchemes:
     accessKey:
       type: apiKey
