@@ -235,21 +235,6 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
-  parameters:
-    SessionId:
-      name: sessionId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Session identifier.
-    AirmeetId:
-      name: airmeetId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Airmeet (event) identifier.
   schemas:
     Error:
       type: object
@@ -261,41 +246,40 @@ components:
           type: string
         error:
           type: string
+    BoothCreate:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        exhibitors:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            type: string
+        metaData:
+          type: object
+          properties:
+            chatEnabled:
+              type: boolean
+            loungeEnabled:
+              type: boolean
+            broadcastEnabled:
+              type: boolean
+            tableCount:
+              type: integer
+        exhibitorInfo:
+          type: object
     Envelope:
       type: object
       properties:
         success:
           type: boolean
         data: {}
-    AirmeetCreate:
-      type: object
-      required:
-      - hostEmail
-      - eventName
-      properties:
-        hostEmail:
-          type: string
-          format: email
-        eventName:
-          type: string
-        shortDesc:
-          type: string
-        startTime:
-          type: string
-        endTime:
-          type: string
-        timezone:
-          type: string
-        accessType:
-          type: string
-        eventType:
-          type: string
-        venueTitle:
-          type: string
-        registrationApprovalRequired:
-          type: boolean
-        venueCapacity:
-          type: integer
     SessionCreate:
       type: object
       required:
@@ -358,47 +342,51 @@ components:
           type: string
         country:
           type: string
-    BoothCreate:
+    AirmeetCreate:
       type: object
       required:
-      - name
+      - hostEmail
+      - eventName
       properties:
-        name:
+        hostEmail:
           type: string
-        exhibitors:
-          type: array
-          items:
-            type: string
-        tags:
-          type: array
-          items:
-            type: string
-        metaData:
-          type: object
-          properties:
-            chatEnabled:
-              type: boolean
-            loungeEnabled:
-              type: boolean
-            broadcastEnabled:
-              type: boolean
-            tableCount:
-              type: integer
-        exhibitorInfo:
-          type: object
+          format: email
+        eventName:
+          type: string
+        shortDesc:
+          type: string
+        startTime:
+          type: string
+        endTime:
+          type: string
+        timezone:
+          type: string
+        accessType:
+          type: string
+        eventType:
+          type: string
+        venueTitle:
+          type: string
+        registrationApprovalRequired:
+          type: boolean
+        venueCapacity:
+          type: integer
+  parameters:
+    AirmeetId:
+      name: airmeetId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Airmeet (event) identifier.
+    SessionId:
+      name: sessionId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Session identifier.
   responses:
-    BadRequest:
-      description: Bad request.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Missing or invalid credentials/token.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Success:
       description: Successful response.
       content:
@@ -407,6 +395,18 @@ components:
             $ref: '#/components/schemas/Envelope'
     ServerError:
       description: Internal server error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid credentials/token.
       content:
         application/json:
           schema:
