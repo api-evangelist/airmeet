@@ -64,6 +64,168 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Airmeet is a company surfaced as a portfolio company of accel, prosus-ventures, redpoint-ventures and added to the API Evangelist network as a stub for enrichment. Sector: cloud-saas. This profile is a lead awaiting the enrichment pipeline.
+Airmeet is a virtual, hybrid and in-person events platform used to run webinars, conferences, summits, meetups, workshops and trade shows with interactive stages, networking lounges, booths, polls, Q&A and engagement analytics. Its Public API lets developers create and manage events (Airmeets), sessions, speakers, booths and event series; manage registrations (add, block and unblock attendees with custom fields); pull engagement and attendance data including polls, questions, UTMs, recordings and replay attendance; and subscribe to 24+ webhook event triggers. Authentication is a two-step flow: exchange an access key and secret key for a 30-day access token, then send it as the X-Airmeet-Access-Token header. The API is served from regional gateways (default Mumbai, EU and US). Airmeet is backed by Accel, Prosus Ventures and Redpoint Ventures.
 
-Backed by: accel, prosus-ventures, redpoint-ventures — http://www.airmeet.com
+**Areas:** Company · Cloud Saas · Event · Virtual Events · Webinars · Event Management · Community · Webhook
+
+## Airmeet on APIs.io
+
+Everything profiled for Airmeet is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/airmeet/](https://apis.io/providers/airmeet/)** — or go straight to one of the APIs or properties below.
+
+### APIs (6)
+
+- [Airmeet Authentication API](https://apis.io/apis/airmeet/airmeet-authentication-api/) — Exchange access/secret keys for an access token.
+- [Airmeet Event Details API](https://apis.io/apis/airmeet/airmeet-event-details-api/) — Read events, participants, sessions, engagement and attendance data.
+- [Airmeet Manage Event API](https://apis.io/apis/airmeet/airmeet-manage-event-api/) — Create and manage events, speakers, sessions, booths and landing pages.
+- [Airmeet Manage Event Series API](https://apis.io/apis/airmeet/airmeet-manage-event-series-api/) — List event series and the events within a series.
+- [Airmeet Manage Registrations API](https://apis.io/apis/airmeet/airmeet-manage-registrations-api/) — Add authorized attendees and block or unblock them.
+- [Airmeet Webhooks API](https://apis.io/apis/airmeet/airmeet-webhooks-api/) — Register webhook subscriptions for Airmeet event triggers.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Airmeet Webhooks](https://apis.io/asyncapis/airmeet/airmeet-webhooks-asyncapi/)
+
+#### Event channels (21)
+
+Individual events and webhooks the provider emits.
+
+- [trigger.airmeet.attendee.added](https://apis.io/channels/airmeet/trigger-airmeet-attendee-added/)
+- [trigger.airmeet.attendee.joined](https://apis.io/channels/airmeet/trigger-airmeet-attendee-joined/)
+- [trigger.airmeet.created](https://apis.io/channels/airmeet/trigger-airmeet-created/)
+- [trigger.airmeet.finished](https://apis.io/channels/airmeet/trigger-airmeet-finished/)
+- [trigger.airmeet.polls](https://apis.io/channels/airmeet/trigger-airmeet-polls/)
+- [trigger.airmeet.questions](https://apis.io/channels/airmeet/trigger-airmeet-questions/)
+- [trigger.airmeet.registrant.added](https://apis.io/channels/airmeet/trigger-airmeet-registrant-added/)
+- [trigger.airmeet.reminder](https://apis.io/channels/airmeet/trigger-airmeet-reminder/)
+- [trigger.airmeet.started](https://apis.io/channels/airmeet/trigger-airmeet-started/)
+- [trigger.attendee.booth.joined](https://apis.io/channels/airmeet/trigger-attendee-booth-joined/)
+- [trigger.attendee.clicked_cta](https://apis.io/channels/airmeet/trigger-attendee-clicked-cta/)
+- [trigger.attendee.engagement_score](https://apis.io/channels/airmeet/trigger-attendee-engagement-score/)
+- [trigger.attendee.entered_airmeet](https://apis.io/channels/airmeet/trigger-attendee-entered-airmeet/)
+- [trigger.attendee.joined_booth](https://apis.io/channels/airmeet/trigger-attendee-joined-booth/)
+- [trigger.attendee.joined_session](https://apis.io/channels/airmeet/trigger-attendee-joined-session/)
+- [trigger.attendee.joined_stage](https://apis.io/channels/airmeet/trigger-attendee-joined-stage/)
+- [trigger.attendee.joined_table](https://apis.io/channels/airmeet/trigger-attendee-joined-table/)
+- [trigger.attendee.ondemand_session_attendance](https://apis.io/channels/airmeet/trigger-attendee-ondemand-session-attendance/)
+- [trigger.attendee.opened_resource](https://apis.io/channels/airmeet/trigger-attendee-opened-resource/)
+- [trigger.leaderboard.scoreboard](https://apis.io/channels/airmeet/trigger-leaderboard-scoreboard/)
+- [trigger.session.attendee.joined](https://apis.io/channels/airmeet/trigger-session-attendee-joined/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [airmeet](https://apis.io/servers/airmeet/airmeet/)
+
+#### Collections (12)
+
+Postman and Open Collection request collections.
+
+- [Airmeet Public Authentication API](https://apis.io/collections/airmeet/open-airmeet-authentication-api/)
+- [Airmeet Public Authentication Event Details API](https://apis.io/collections/airmeet/open-airmeet-event-details-api/)
+- [Airmeet Public Authentication Manage Event API](https://apis.io/collections/airmeet/open-airmeet-manage-event-api/)
+- [Airmeet Public Authentication Manage Event Series API](https://apis.io/collections/airmeet/open-airmeet-manage-event-series-api/)
+- [Airmeet Public Authentication Manage Registrations API](https://apis.io/collections/airmeet/open-airmeet-manage-registrations-api/)
+- [Airmeet Public Authentication Webhooks API](https://apis.io/collections/airmeet/open-airmeet-webhooks-api/)
+- [Airmeet Public Authentication API](https://apis.io/collections/airmeet/postman-airmeet-authentication-api/)
+- [Airmeet Public Authentication Event Details API](https://apis.io/collections/airmeet/postman-airmeet-event-details-api/)
+- [Airmeet Public Authentication Manage Event API](https://apis.io/collections/airmeet/postman-airmeet-manage-event-api/)
+- [Airmeet Public Authentication Manage Event Series API](https://apis.io/collections/airmeet/postman-airmeet-manage-event-series-api/)
+- [Airmeet Public Authentication Manage Registrations API](https://apis.io/collections/airmeet/postman-airmeet-manage-registrations-api/)
+- [Airmeet Public Authentication Webhooks API](https://apis.io/collections/airmeet/postman-airmeet-webhooks-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Airmeet Openapi Overlay](https://apis.io/overlays/airmeet/airmeet-openapi-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Airmeet Authentication](https://apis.io/security/airmeet/airmeet-authentication/)
+- [Airmeet Domain Security](https://apis.io/security/airmeet/airmeet-domain-security/)
+- [Airmeet Trust Center](https://apis.io/security/airmeet/airmeet-trust-center/)
+- [Airmeet Vulnerability Disclosure](https://apis.io/security/airmeet/airmeet-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.airmeet.com/)
+- [Documentation](https://help.airmeet.com/support/home)
+- [Getting started](https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction)
+- [API reference](https://help.airmeet.com/support/solutions/articles/82000467794-airmeet-public-api-introduction)
+- [Pricing](https://www.airmeet.com/hub/pricing/)
+- [Sign up](https://www.airmeet.com/signup)
+- [Support](https://help.airmeet.com/support/home)
+- [Changelog](https://updates.airmeet.com/en/)
+- [Blog](https://www.airmeet.com/hub/blog/)
+- [Security](https://www.airmeet.com/hub/responsible-disclosure/)
+- [Compliance](https://www.airmeet.com/hub/security-and-compliance/)
+- [Trust centre](https://www.airmeet.com/hub/security-and-compliance/)
+- [Terms of service](https://www.airmeet.com/hub/terms-of-use/)
+- [Privacy policy](https://www.airmeet.com/hub/privacy-policy/)
+- [Status](https://status.airmeet.com/)
+
+## API Evangelist rating
+
+**Kin Score 50.3** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 57.9 |
+| Contract governance | 18.2 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 50.6 |
+| Access clarity | 47.4 |
+
+**Agent readiness 19.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/airmeet/](https://apis.io/providers/airmeet/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Airmeet: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/airmeet/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
